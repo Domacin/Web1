@@ -1,0 +1,139 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "SpisakKorisnika";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.3;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+            height: 100%;
+        }
+
+        tr,td
+        {
+            padding:3px;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Spisak svih korisnika:</h3>
+    <table>
+        <tr>
+            <td>Korisnicko ime:</td>
+            <td>
+                <form action="~/Administrator/sortirajPoImenu" method="post">
+                    <input type="submit" value="Ime:" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>
+                <form action="~/Administrator/sortirajPoPrezimenu" method="post">
+                    <input type="submit" value="Prezime:" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>
+                <form action="~/Administrator/sortirajPoUlozi" method="post">
+                    <input type="submit" value="Uloga:" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+        </tr>
+        @foreach (Korisnik k in ViewBag.korisnici)
+        {
+            <tr>
+                <td>@k.KorisnickoIme</td>
+                <td>@k.Ime</td>
+                <td>@k.Prezime</td>
+                <td>@k.Uloga.ToString()</td>
+            </tr>
+        }
+    </table>
+    <form action="~/Administrator/PretragaKorisnika" method="post">
+        <table>
+            <tr>
+                <td>Ime:</td>
+                <td><input type="text" name="Ime" /></td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td><input type="text" name="Prezime" /></td>
+            </tr>
+
+            <tr>
+                <td>Uloga:</td>
+                <td><input list="uloga" name="Uloga" />
+                <datalist id="uloga">
+                    <option value="ADMINISTRATOR"></option>
+                    <option value="MENADZER"></option>
+                    <option value="TURISTA"></option>
+                </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Pretrazi" /></td>
+            </tr>
+        </table>
+    </form>
+    <h2>Sumnjivi korisnici:</h2>
+    <table>
+        <tr>
+            <td>Korisnicko ime:</td>
+            <td>
+                <form action="~/Administrator/sortirajPoImenu" method="post">
+                    <input type="submit" value="Ime" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>
+                <form action="~/Administrator/sortirajPoPrezimenu" method="post">
+                    <input type="submit" value="Prezime" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>
+                <form action="~/Administrator/sortirajPoUlozi" method="post">
+                    <input type="submit" value="Uloga" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>Broj otkazanih rezervacija</td>
+        </tr>
+        @foreach (Korisnik k in ViewBag.korisnici)
+        {
+
+            if (k.BrojOtkazanih > 2)
+            {
+                <tr>
+                    <td>@k.KorisnickoIme</td>
+                    <td>@k.Ime</td>
+                    <td>@k.Prezime</td>
+                    <td>@k.Uloga.ToString()</td>
+                    <td>@k.BrojOtkazanih</td>
+                    @if (k.Blokiran == "ne")
+                    {
+                        <td><a href="~/Administrator/BlokirajKorisnika?ime=@k.KorisnickoIme">Blokiraj korisnika</a></td>
+                    }
+                    else
+                    {
+                        <td><a href="~/Administrator/OdblokirajKorisnika?ime=@k.KorisnickoIme">Odblokiraj korisnika</a></td>
+                    }
+
+                </tr>
+            }
+
+
+        }
+    </table>
+</body>
+</html>
+

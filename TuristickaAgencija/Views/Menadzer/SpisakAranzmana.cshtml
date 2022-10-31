@@ -1,0 +1,185 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "SpisakAranzmana";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+    body::after {
+        background-image: url('../../Slike/Plaza7.jpg');
+        content: "";
+        opacity: 0.3;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: -1;
+        background-size:cover;
+        
+    }
+
+    tr, td {
+        padding: 3px;
+    }
+</style>
+</head>
+
+<body>
+    <p><a href="~/Menadzer/SpisakSmjestaja">Spisak svih smjestaja</a></p>
+    <p><a href="~/Menadzer/SpisakSmjestajnihJedinica">Spisak svih smjestajnih jedinica</a></p>
+    <h2>Spisak svih aranzmana</h2>
+    <table>
+        <tr>
+            <td>ID aranzmana:</td>
+            <td>
+                <form action="~/Menadzer/SortirajNaziv" method="post">
+                    <input type="submit" value="Naziv aranzmana:" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>Tip aranzmana</td>
+            <td>Tip prevoza</td>
+            <td>
+                <form action="~/Menadzer/sortirajPoDatumPocetka" method="post">
+                    <input type="submit" value="Datum pocetka" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>
+                <form action="~/Menadzer/sortirajPoDatumKraj" method="post">
+                    <input type="submit" value="Datum kraja" style="border:unset;background-color:transparent;" />
+                </form>
+            </td>
+            <td>Dodatno</td>
+        </tr>
+        @{
+
+            Korisnik k = (Korisnik)Session["korisnik"];
+            foreach (Aranzman a in ViewBag.aranzmani)
+            {
+                for (int i = 0; i < ViewBag.smjestaji.Count; i++)
+                {
+                    for (int j = 0; j < ViewBag.smjestajnejedinice.Count; j++)
+                    {
+
+                        if (a.IdSmjestaja == ViewBag.smjestaji[i].IdSmjestaja)
+                        {
+                                <tr>
+                                    <td>@a.IdAranzmana</td>
+                                    <td>@a.NazivAranzmana</td>
+                                    <td>@a.Tip_aranzmana</td>
+                                    <td>@a.Tip_prevoza</td>
+                                    <td>@a.DatumPocetkaPutovanja.ToString("dd//MM/yyyy")</td>
+                                    <td>@a.DatumZavrsetkaPutovanja.ToString("dd//MM/yyyy")</td>
+                                    @if (a.PripadaKorisniku == k.KorisnickoIme)
+                                    {
+                                    <td>
+                                        @if (ViewBag.smjestaji[i].BarJednaSMjestajnaJedinicaZauzeta == false)
+                                        {
+                                            <a href="~/Menadzer/ObrisiAranzman?id=@a.IdAranzmana">Obrisi</a>
+                                        }
+                                        <a href="~/Menadzer/Prosledi?id=@a.IdAranzmana">Modifikuj</a>
+                                    </td>
+                                    }
+                                </tr>
+                            break;
+                        }
+
+
+                    }
+                }
+
+            }
+        }
+    </table>
+    <h2>Spisak rezervacija za aranzmane koje je napravio menadzer @k.KorisnickoIme</h2>
+    <table>
+        <tr>
+            <td>Identifiaktor rezervacije</td>
+            <td>Ko je rezervisao</td>
+            <td>Rezervisani aranzman</td>
+            <td>Status rezervacije</td>
+        </tr>
+        @foreach(Rezervacija r in ViewBag.rezervacije)
+        {
+            foreach(Aranzman a in ViewBag.aranzmani)
+            {
+                if(r.AranzmanZaKojiSeVrsiRezervacija.IdAranzmana == a.IdAranzmana && a.PripadaKorisniku == k.KorisnickoIme)
+                {
+                    <tr>
+                        <td>@r.Identifikator</td>
+                        <td>@r.Turista.KorisnickoIme</td>
+                        <td>@a.NazivAranzmana</td>
+                        <td>@r.Status</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+
+
+    <div style="float:left;padding-top:5%;">
+        <form action="~/Menadzer/Pretraga" method="post">
+            <table>
+                <tr>
+                    <td>Naziv aranzmana:</td>
+                    <td> <input type="text" name="NazivAranzmana" /></td>
+                </tr>
+
+                <tr>
+                    <td>Tip prevoza:</td>
+                    <td>
+                        <input list="tipprevoza" name="Tip_prevoza" />
+                        <datalist id="tipprevoza">
+                            <option value="AUTOBUS"></option>
+                            <option value="AVION"></option>
+                            <option value="AUTOBUS_AVION"></option>
+                            <option value="INDIVIDUALAN"></option>
+                            <option value="OSTALO"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tip aranzmana:</td>
+                    <td>
+                        <input list="tiparanzmana" name="Tip_aranzmana" />
+                        <datalist id="tiparanzmana">
+                            <option value="NOCENJE_SA_DORUCKOM"></option>
+                            <option value="POLUPANSION"></option>
+                            <option value="PUN_PANSION"></option>
+                            <option value="ALL_INCLUSIVE"></option>
+                            <option value="NAJAM_APARTMANA"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Minimalni datum pocetka putovanja:</td>
+                    <td><input type="date" name="minPocetak" /></td>
+                </tr>
+                <tr>
+                    <td>Maximalni datum pocetka putovanja:</td>
+                    <td><input type="date" name="maxPocetak" /></td>
+                </tr>
+                <tr>
+                    <td>Minimalni datum zavrsetka putovanja:</td>
+                    <td><input type="date" name="minKraj" />></td>
+                </tr>
+                <tr>
+                    <td>Maximalni datum zavrsetka putovanja:</td>
+                    <td><input type="date" name="maxKraj" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+</body>
+</html>
+

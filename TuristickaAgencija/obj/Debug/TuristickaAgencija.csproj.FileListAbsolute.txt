@@ -1,0 +1,112 @@
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\TuristickaAgencija.dll.config
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\TuristickaAgencija.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\TuristickaAgencija.pdb
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csc.exe
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csc.exe.config
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csc.rsp
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csi.exe
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csi.rsp
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.AppContext.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\vbc.exe
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\vbc.exe.config
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\vbc.rsp
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\VBCSCompiler.exe
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Antlr3.Runtime.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Newtonsoft.Json.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Helpers.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Mvc.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Optimization.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Razor.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Deployment.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Razor.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\WebGrease.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Helpers.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Mvc.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Optimization.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Razor.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Deployment.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Razor.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Newtonsoft.Json.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Antlr3.Runtime.pdb
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.csprojAssemblyReference.cache
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.csproj.CoreCompileInputs.cache
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.csproj.CopyComplete
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.dll
+C:\Users\vukmi\OneDrive\Radna površina\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.pdb
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\TuristickaAgencija.dll.config
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\TuristickaAgencija.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\TuristickaAgencija.pdb
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csc.exe
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csc.exe.config
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csc.rsp
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csi.exe
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\csi.rsp
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.AppContext.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\vbc.exe
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\vbc.exe.config
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\vbc.rsp
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\VBCSCompiler.exe
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Antlr3.Runtime.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Newtonsoft.Json.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Helpers.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Mvc.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Optimization.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Razor.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Deployment.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Razor.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\WebGrease.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Helpers.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Mvc.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Optimization.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.Razor.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Deployment.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\System.Web.WebPages.Razor.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Newtonsoft.Json.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Antlr3.Runtime.pdb
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.csprojAssemblyReference.cache
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.csproj.CoreCompileInputs.cache
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.csproj.CopyComplete
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.dll
+C:\Users\vukmi\OneDrive\Radna površina\Moje stvari\pr056-2018-web-projekat-master\TuristickaAgencija\TuristickaAgencija\obj\Debug\TuristickaAgencija.pdb

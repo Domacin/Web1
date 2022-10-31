@@ -1,0 +1,347 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.3;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+            height: 100%;
+        }
+
+        .map {
+            height: 350px;
+            width: 100%;
+        }
+
+        tr, td {
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+</head>
+
+<body>
+    <h2>Informacije o aranzmanu:</h2>
+
+    <div style="float:left; width:50%;">
+        @{
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            List<Smjestaj> smjestaji = new List<Smjestaj>();
+            List<SmjestajnaJedinica> smjestajnejedinice = new List<SmjestajnaJedinica>();
+            foreach (Smjestaj item in ViewBag.smjestaji)
+            {
+                smjestaji.Add(item);
+            }
+
+            foreach (SmjestajnaJedinica item in ViewBag.SJedinice)
+            {
+                smjestajnejedinice.Add(item);
+            }
+
+
+
+            foreach(Aranzman a in ViewBag.aranzmanZaPrikaz)
+            {
+                <p>Naziv aranzmana: @a.NazivAranzmana;</p>
+                <p>Tip aranzmana: @a.Tip_aranzmana</p>
+                <p>Tip Prevoza: @a.Tip_prevoza</p>
+                <p>Lokacija: @a.Lokacija </p>
+                <p>Datum pocetka aranzmana: @a.DatumPocetkaPutovanja.ToString("dd//MM/yyyy")</p>
+                <p>Datum kraja aranzmana: @a.DatumZavrsetkaPutovanja.ToString("dd//MM/yyyy")</p>
+                <p>Adresa odakle se krece: @a.MjestoNalazenja.Adresa </p>
+                <div id="map" class="map"></div>
+                <script type="text/javascript">
+                            var map = new ol.Map({
+                                target: 'map',
+                                layers: [
+                                    new ol.layer.Tile({
+                                        source: new ol.source.OSM()
+                                    })
+                                ],
+                                view: new ol.View({
+                                    center: ol.proj.fromLonLat([@a.MjestoNalazenja.GeografksaSirina , @a.MjestoNalazenja.GeografksaDuzina]),
+                                    zoom: 8
+                                })
+                            });
+                </script>
+               
+                <p>Vrijeme pocetka putovanja: @a.VrijemeNalazenje.ToShortTimeString()</p>
+                <p>Maksimalan dozvoljen broj putnika: @a.MaxBrojPutnika </p>
+                <p>Opis aranzmana: @a.OpisAranzmana</p>
+                <p>Program putovanja: @a.ProgramPutovanja</p>
+                <p>Slika: <img src="@a.PosterAranzmana" width="150" height="100" /></p>
+            }
+
+            <h2>Informacije o smjestaju aranzmana:</h2>
+
+            <div style="float:left;">
+                @foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+                {
+                    for (int i = 0; i < smjestaji.Count; i++)
+                    {
+                        if (a.IdSmjestaja == smjestaji[i].IdSmjestaja)
+                        {
+                            <p>Naziv smjestaja: @smjestaji[i].NazivSmjestaja</p>
+                            <p>Tip smjestaja: @smjestaji[i].Tip_smjestaja.ToString()</p>
+                            <p>Broj zvjezdica: @smjestaji[i].BrojZvjezdica</p>
+                            <p>Bazen: @smjestaji[i].Bazen</p>
+                            <p>Spa centar: @smjestaji[i].SpaCentar</p>
+                            <p>WiFi: @smjestaji[i].WiFi</p>
+                            <p>Prilagodjenost osobama sa invaliditetom: @smjestaji[i].PrilagodjenostOsobamaSaInvaliditetom</p>
+                        }
+                    }
+                }
+            </div>
+            
+        }
+
+
+    </div>
+    <div style="float:right">
+        <h2>Smjestajne jedinice:</h2>
+        <table>
+            <tr>
+                <td>
+                    <form action="~/Informacija/sortirajPoBrojuDozvoljenihGostiju" method="post">
+                        <input type="submit" value="Dozvoljeni broj gostiju" style="border:unset;background-color:transparent;" />
+                    </form>
+                </td>
+
+                <td>Dozvoljeni ljubimci</td>
+                <td>
+                    <form action="~/Informacija/sortirajPoCeni" method="post">
+                        <input type="submit" value="Cijena" style="border:unset;background-color:transparent;" />
+                    </form>
+                </td>
+                <td>Zauzeto</td>
+            </tr>
+            @foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+            {
+                for (int i = 0; i < smjestaji.Count; i++)
+                {
+                    for (int j = 0; j < smjestajnejedinice.Count; j++)
+                    {
+
+                        if (korisnik == null)
+                        {
+                            if (a.IdSmjestaja == smjestaji[i].IdSmjestaja && smjestajnejedinice[j].PripadaSmjestaju == smjestaji[i].IdSmjestaja)
+                            {
+                                <tr>
+                                    <td>@smjestajnejedinice[j].DozvoljenBrojGostiju</td>
+                                    <td>@smjestajnejedinice[j].DozvoljeniLjubimci</td>
+                                    <td>@smjestajnejedinice[j].CenaSmestajneJedinice</td>
+                                    <td>@smjestajnejedinice[j].Zauzeto</td>
+                                </tr>
+                            }
+                        }
+
+                        if (korisnik != null)
+                        {
+                            if (korisnik.Uloga == ULOGA.TURISTA)
+                            {
+                                if (a.IdSmjestaja == smjestaji[i].IdSmjestaja && smjestajnejedinice[j].PripadaSmjestaju == smjestaji[i].IdSmjestaja)
+                                {
+                                <tr>
+                                    <td>@smjestajnejedinice[j].DozvoljenBrojGostiju</td>
+                                    <td>@smjestajnejedinice[j].DozvoljeniLjubimci</td>
+                                    <td>@smjestajnejedinice[j].CenaSmestajneJedinice</td>
+                                    <td>@smjestajnejedinice[j].Zauzeto</td>
+                                    @if (a.DatumPocetkaPutovanja > DateTime.Now && smjestajnejedinice[j].Zauzeto == "ne")
+                                    {
+                                        <td><a href="~/Turista/Rezervisi?id=@smjestajnejedinice[j].Id">Rezervisi</a></td>
+                                    }
+
+                                </tr>
+                                }
+                            }
+                            else
+                            {
+                                if (a.IdSmjestaja == smjestaji[i].IdSmjestaja && smjestajnejedinice[j].PripadaSmjestaju == smjestaji[i].IdSmjestaja)
+                                {
+                                <tr>
+
+                                    <td>@smjestajnejedinice[j].DozvoljenBrojGostiju</td>
+                                    <td>@smjestajnejedinice[j].DozvoljeniLjubimci</td>
+                                    <td>@smjestajnejedinice[j].CenaSmestajneJedinice</td>
+                                    <td>@smjestajnejedinice[j].Zauzeto</td>
+                                </tr>
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        </table>
+
+    </div>
+ @{ 
+
+     if (Session["lista"] == null)
+     {
+         Session["lista"] = new List<Aranzman>();
+
+     }
+
+
+     foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+     {
+         (Session["lista"] as List<Aranzman>).Add(a);
+
+     }
+
+
+
+ }
+    <div style="float:right;padding-top:5%;">
+        <form action="~/Informacija/Pretraga" method="post">
+            <table style="border-collapse:collapse;border-width:1px;border-style:solid;border-color:black;background-color:#f5f5ef;">
+                <tr>
+                    <td>Donja granica za dozvoljeni broj gostiju:</td>
+                    <td> <input type="number" name="DozvoljenBrojGostijuMin" /></td>
+                </tr>
+
+                <tr>
+                    <td>Gornja granica za dozvoljeni broj gostiju:</td>
+                    <td> <input type="number" name="DozvoljenBrojGostijuMax" /></td>
+                </tr>
+
+                <tr>
+                    <td>Dozvoljen boravak ljubimcima:</td>
+                    <td><input type="text" name="DozvoljeniLjubimci" /></td>
+                </tr>
+
+                <tr>
+                    <td>Cena za smjestajne jedinice:</td>
+                    <td><input type="number" step="any" name="CenaSmestajneJedinice" /></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+
+        @{
+            if (korisnik != null)
+            {
+                foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+                {
+                    foreach (Rezervacija r in ViewBag.rezervacije)
+                    {
+                        if (r.AranzmanZaKojiSeVrsiRezervacija.IdAranzmana == a.IdAranzmana && r.Status == "aktivna" && a.DatumZavrsetkaPutovanja < DateTime.Now && korisnik.Uloga == ULOGA.TURISTA)
+                        {
+                            <p>Ostavite komentar:</p>
+                            <form action="~/Turista/OstaviKomentar" method="post">
+                                <table style="border-collapse:collapse;border-width:1px;border-style:solid;border-color:black;background-color:#f5f5ef;">
+                                    <tr>
+                                        <td>Komentar:</td>
+                                        <td><input type="text" name="TekstKomentar" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ocena:</td>
+                                        <td><input type="number" max="5" min="1" name="Ocena" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Korisnik:</td>
+                                        <td><input type="text" name="KorisnickoIme" value="@korisnik.KorisnickoIme" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Id aranzmana:</td>
+                                        <td>
+                                            <input type="number" name="IdAranzmana" value="@a.IdAranzmana" readonly />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="submit" value="Ostavi komentar" /></td>
+                                    </tr>
+                                </table>
+                            </form>
+                            break;
+                        }
+                    }
+                }
+
+                <h2>Komentari:</h2>
+                <table>
+
+
+                    @foreach (Komentar komentar in ViewBag.komentari)
+                    {
+                        foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+                        {
+                            if (komentar.Odobren == "da" && komentar.Aranzman.IdAranzmana == a.IdAranzmana)
+                            {
+                                <tr>
+                                    <td>@komentar.Turista.KorisnickoIme: @komentar.TekstKomentar</td>
+                                </tr>
+                            }
+                            else if (komentar.Odobren == "ne" && korisnik.Uloga == ULOGA.MENADZER && a.PripadaKorisniku == korisnik.KorisnickoIme && a.IdAranzmana == komentar.Aranzman.IdAranzmana)
+                            {
+
+                                <tr>
+                                    <td>@komentar.Turista.KorisnickoIme: @komentar.TekstKomentar</td>
+                                    <td><a href="~/Menadzer/OdobriKomentar?id=@komentar.IdKomentara">Odobri komentar</a></td>
+                                </tr>
+                            }
+                        }
+
+                    }
+                </table>
+
+            }
+            else
+            {
+                <h2>Komentari:</h2>
+                <table>
+
+
+                    @foreach (Komentar komentar in ViewBag.komentari)
+                    {
+                        foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+                        {
+                            if (komentar.Odobren == "da" && komentar.Aranzman.IdAranzmana == a.IdAranzmana)
+                            {
+                                <tr>
+                                    <td>@komentar.Turista.KorisnickoIme: @komentar.TekstKomentar</td>
+                                </tr>
+                            }
+                        }
+
+
+                    }
+                </table>
+
+            }
+
+        }
+
+    </div>
+
+  
+</body>
+
+</html>
+

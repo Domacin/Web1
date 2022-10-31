@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+<style>
+    body::after {
+        background-image: url('../../Slike/Plaza7.jpg');
+        content: "";
+        opacity: 0.3;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: -1;
+        background-size: cover;
+        height: 100%;
+    }
+
+    .loginDiv{
+        top:30%;
+        left:30%;
+        position:fixed;
+    }
+    tr, td {
+        padding: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="loginDiv">
+        <p> Ulogujte se:</p>
+        <form action="~/LogIn/UlogujSe" method="post">
+            <table>
+
+                <tr>
+                    <td>Korisnicko ime:</td>
+                    <td><input type="text" name="KorisnickoIme" /></td>
+                </tr>
+
+                <tr>
+                    <td>Lozinka:</td>
+                    <td><input type="password" name="Lozinka" /></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Uloguj se" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <p style="color:red;">@ViewBag.Greska</p> 
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+﻿1;Lotte Dubai Palace;HOTEL;5;da;da;da;da
+2;Hotel Stanisic;HOTEL;3;da;ne;da;ne
+3;Hilton Hurgada Plaza;HOTEL;4;da;da;da;da
+4;Amira Boutique Hotel;HOTEL;5;da;da;da;da
+5;Lotte New York Palace;HOTEL;5;da;da;da;da
+6;Ikonomov House;VILA;3;da;ne;ne;ne
+7;City Seasons Twins;MOTEL;4;da;ne;da;ne
+8;Motel Alpin;MOTEL;4;da;da;da;ne
+9;Milmari twins;VILA;4;da;ne;da;da
+10;Milenium Plaza Hotel;HOTEL;5;da;da;da;da
+11;Golf Villa Malina;VILA;3;da;ne;ne;ne
+12;Hotel Drina;HOTEL;4;ne;da;da;ne
+13;Vila Pavlovic;VILA;4;da;ne;da;ne
+14;Villa Stanisic;VILA;5;da;da;da;ne
+15;Motel Mirkovic;MOTEL;3;ne;ne;da;ne
+16;Villa Radovic;VILA;3;da;ne;ne;ne
+17;Hotel Mirkovic;HOTEL;2;ne;ne;ne;ne

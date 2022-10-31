@@ -1,0 +1,163 @@
+﻿@using TuristickaAgencija.Models;
+@{
+    ViewBag.Title = "Rezervisi";
+}
+
+ 
+
+<!DOCTYPE html>
+
+
+
+<html>
+
+<head>
+    <style>
+
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+            height: 100%;
+        }
+
+        td, tr {
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+    @{
+        Korisnik korisnik = (Korisnik)Session["korisnik"];
+        <h2>Sve rezervacije korisnika  @korisnik.KorisnickoIme</h2>
+        
+         
+
+        <table style="background-color:#f5f5ef;width:100%;">
+            @foreach (Aranzman a in ViewBag.aranzmani)
+
+            {
+                foreach (Rezervacija r in ViewBag.rezervacije)
+                {
+                    foreach (SmjestajnaJedinica sj in ViewBag.SmjestajneJedinice)
+                    {
+                        if (r.AranzmanZaKojiSeVrsiRezervacija.IdAranzmana == a.IdAranzmana && r.Turista.KorisnickoIme == korisnik.KorisnickoIme && r.IzabranaSmjestajnaJedinica.Id == sj.Id && r.Turista.KorisnickoIme == korisnik.KorisnickoIme)
+                        {
+                            <tr>
+                                <td>
+                                    <form action="~/Turista/sortirajPoDatumPocetka" method="post">
+                                        <input type="submit" value="Datum pocetka" style="border:unset;background-color:transparent;" />
+                                    </form>
+                                    @r.AranzmanZaKojiSeVrsiRezervacija.DatumPocetkaPutovanja.ToString("dd//MM/yyyy")
+                                </td>
+                                <td>
+                                    <form action="~/Turista/sortirajPoDatumKraj" method="post">
+                                        <input type="submit" value="Datum kraja" style="border:unset;background-color:transparent;" />
+                                    </form>
+                                    @r.AranzmanZaKojiSeVrsiRezervacija.DatumZavrsetkaPutovanja.ToString("dd//MM/yyyy")
+                                </td>
+
+                                <td>Dana<br />@{double b = (r.AranzmanZaKojiSeVrsiRezervacija.DatumZavrsetkaPutovanja - r.AranzmanZaKojiSeVrsiRezervacija.DatumPocetkaPutovanja.Date).TotalDays;}@b</td>
+                                <td>Slika <br /><img style="border-radius:50%;" alt="Avatar" width="50" height="50" src="@a.PosterAranzmana" /></td>
+                                <td>
+                                    <form action="~/Turista/sortirajPoNazivu" method="post">
+                                        <input type="submit" value="Naziv aranzmana:" style="border:unset;background-color:transparent;" />
+                                    </form>
+                                    @r.AranzmanZaKojiSeVrsiRezervacija.NazivAranzmana
+                                </td>
+                                <td style="width:auto;">Cena<br /> @r.IzabranaSmjestajnaJedinica.CenaSmestajneJedinice EUR</td>
+                                <td><a href="~/Pocetna/Prosledi?id=@a.IdAranzmana">Pogledaj</a></td>
+                                @if (r.Status == "aktivna" && a.DatumPocetkaPutovanja>DateTime.Now)
+                                {
+                                    <td><a href="~/Turista/OtkaziRezervaciju?idRezervacije=@r.Identifikator">Otkazi rezervaciju</a></td>
+                                }
+                                else if(r.Status == "otkazana")
+                                {
+                                    <td><p>Rezervacija je otkaza</p></td>
+                                }else if(a.DatumZavrsetkaPutovanja < DateTime.Now && r.Status == "aktivna")
+                                {
+                                    <td><a href="~/Pocetna/Prosledi?id=@a.IdAranzmana">Ostavi komentar</a></td>
+                                }
+
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </table>
+
+
+        <div style="float:left;padding-top:5%;">
+            <form action="~/Turista/Pretraga" method="post">
+                <table>
+                    <tr>
+                        <td>Naziv aranzmana:</td>
+                        <td> <input type="text" name="NazivAranzmana" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>Tip prevoza:</td>
+                        <td>
+                            <input list="tipprevoza" name="Tip_prevoza" />
+                            <datalist id="tipprevoza">
+                                <option value="AUTOBUS"></option>
+                                <option value="AVION"></option>
+                                <option value="AUTOBUS_AVION"></option>
+                                <option value="INDIVIDUALAN"></option>
+                                <option value="OSTALO"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tip aranzmana:</td>
+                        <td>
+                            <input list="tiparanzmana" name="Tip_aranzmana" />
+                            <datalist id="tiparanzmana">
+                                <option value="NOCENJE_SA_DORUCKOM"></option>
+                                <option value="POLUPANSION"></option>
+                                <option value="PUN_PANSION"></option>
+                                <option value="ALL_INCLUSIVE"></option>
+                                <option value="NAJAM_APARTMANA"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Minimalni datum pocetka putovanja:</td>
+                        <td><input type="date" name="minPocetak" /></td>
+                    </tr>
+                    <tr>
+                        <td>Maximalni datum pocetka putovanja:</td>
+                        <td><input type="date" name="maxPocetak" /></td>
+                    </tr>
+                    <tr>
+                        <td>Minimalni datum zavrsetka putovanja:</td>
+                        <td><input type="date" name="minKraj" />></td>
+                    </tr>
+                    <tr>
+                        <td>Maximalni datum zavrsetka putovanja:</td>
+                        <td><input type="date" name="maxKraj" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Pretrazi" />
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+    }
+</body>
+
+</html>

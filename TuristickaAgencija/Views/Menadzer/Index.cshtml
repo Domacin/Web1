@@ -1,0 +1,461 @@
+﻿@using TuristickaAgencija.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.3;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+            height: 100%;
+        }
+
+        .map {
+            height: 350px;
+            width: 100%;
+        }
+
+        tr, td {
+            padding: 3px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+</head>
+
+<body>
+    <h1>Menadzerski panel</h1>
+    <div style="float:left;">
+        <h2>Dodaj smjestaj:</h2>
+        <form action="~/Menadzer/DodajSmjestaj" method="post">
+            <table>
+                <tr>
+                    <td>Naziv smjestaja:</td>
+                    <td><input type="text" name="NazivSmjestaja" /></td>
+                </tr>
+
+                <tr>
+                    <td>Tip smjestaja:</td>
+                    <td>
+                        <input list="tipsmjestaja" name="Tip_smjestaja" />
+                        <datalist id="tipsmjestaja">
+                            <option value="HOTEL"></option>
+                            <option value="MOTEL"></option>
+                            <option value="VILA"></option>
+                        </datalist>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>Broj zvjezdica:</td>
+                    <td><input type="number" name="BrojZvjezdica" /></td>
+                </tr>
+
+                <tr>
+                    <td>Bazen:</td>
+                    <td><input type="text" name="Bazen" /></td>
+                </tr>
+
+                <tr>
+                    <td>Spa centar:</td>
+                    <td><input type="text" name="SpaCentar" /></td>
+                </tr>
+
+                <tr>
+                    <td>Prilagodjenost osobama sa invaliditetom:</td>
+                    <td><input type="text" name="PrilagodjenostOsobamaSaInvaliditetom" /></td>
+                </tr>
+
+                <tr>
+                    <td>Wifi:</td>
+                    <td><input type="text" name="WiFi" /></td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" value="Dodaj" /></td>
+                </tr>
+            </table>
+            <p style="color:red;">@ViewBag.GreskaSmjestaj</p>
+            <p>@ViewBag.UspjesanSmjestaj</p>
+        </form>
+
+        <h2>Dodaj smjestajnu jedinicu:</h2>
+        <form action="~/Menadzer/DodajSmjestajnuJedinicu" method="post">
+            <table>
+                <tr>
+                    <td>Dozvoljeni broj gostiju:</td>
+                    <td><input type="number" name="DozvoljenBrojGostiju" /></td>
+                </tr>
+
+                <tr>
+                    <td>Dozvoljeni ljubimci:</td>
+                    <td><input type="text" name="DozvoljeniLjubimci" /></td>
+                </tr>
+
+                <tr>
+                    <td>Cena:</td>
+                    <td><input type="number" step="any" name="CenaSmestajneJedinice" /></td>
+                </tr>
+                <tr>
+                    <td>Izaberi id smjestaja:</td>
+                    <td><input list="idsmjestaja" name="PripadaSmjestaju" required/>
+                    <datalist id="idsmjestaja">
+                        @foreach(Smjestaj item in ViewBag.smjestaji)
+                        {
+                            <option value="@item.IdSmjestaja"></option>
+                        }
+                        </datalist></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Dodaj" /></td>
+                </tr>
+            </table>
+        </form>
+        <p style="color:red;">@ViewBag.Greska</p>
+        <p>@ViewBag.Uspjesno</p>
+
+
+
+    </div>
+
+    <div style="float:right;">
+        <h2>Dodaj aranzman:</h2>
+        <form action="~/Menadzer/DodajAranzman" method="post">
+            <table>
+                <tr>
+                    <td>Naziv aranzmana:</td>
+                    <td><input type="text" name="NazivAranzmana" /></td>
+                </tr>
+
+                <tr>
+                    <td>Tip aranzmana:</td>
+                    <td>
+                        <input list="tip" name="Tip_aranzmana" />
+                        <datalist id="tip">
+                            <option value="NOCENJE_SA_DORUCKOM"></option>
+                            <option value="POLUPANSION"></option>
+                            <option value="PUN_PANSION"></option>
+                            <option value="ALL_INCLUSIVE"></option>
+                            <option value="NAJAM_APARTMANA"></option>
+                        </datalist>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Tip prevoza:</td>
+                    <td>
+
+                        <input list="prevoz" name="Tip_prevoza" />
+                        <datalist id="prevoz">
+                            <option value="AUTOBUS"></option>
+                            <option value="AVION"></option>
+                            <option value="AUTOBUS_AVION"></option>
+                            <option value="INDIVIDUALAN"></option>
+                            <option value="OSTALO"></option>
+                        </datalist>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Lokacija:</td>
+                    <td>
+                        <input list="lokacija" name="Lokacija" />
+                        <datalist id="lokacija">
+                            <option value="GRAD"></option>
+                            <option value="DRZAVA"></option>
+                            <option value="REGIJA"></option>
+                        </datalist>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Datum pocetka:</td>
+                    <td><input type="date" name="DatumPocetkaPutovanja" /></td>
+                </tr>
+
+                <tr>
+                    <td>Datum kraja:</td>
+                    <td><input type="date" name="DatumZavrsetkaPutovanja" /></td>
+                </tr>
+
+                <tr>
+                    <td>Vrijeme nalazenja:</td>
+                    <td><input type="time" name="VrijemeNalazenje" /></td>
+                </tr>
+
+                <tr>
+                    <td>Maksimalni broj putnika:</td>
+                    <td><input type="number" name="MaxBrojPutnika" /></td>
+                </tr>
+
+                <tr>
+                    <td>Opis aranzmana</td>
+                    <td><input type="text" name="OpisAranzmana" /></td>
+                </tr>
+
+                <tr>
+                    <td>Program putovanja:</td>
+                    <td><input type="text" name="ProgramPutovanja" /></td>
+                </tr>
+
+                <tr>
+                    <td>Adresa nalazenja:</td>
+                    <td><input id="address" type="text" name="Adresa" /></td>
+                </tr>
+
+                <tr>
+                    <td>Geografska duzina:</td>
+                    <td><input id="lat" type="number" step="any" name="GeografksaDuzina" /></td>
+                </tr>
+
+                <tr>
+                    <td>Geografska sirina:</td>
+                    <td><input id="lon" type="number" step="any" name="GeografksaSirina" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="map" class="map""></div>
+                        <script type="text/javascript">
+                            var map = new ol.Map({
+                                target: 'map',
+                                layers: [
+                                    new ol.layer.Tile({
+                                        source: new ol.source.OSM()
+                                    })
+                                ],
+                                view: new ol.View({
+                                    center: ol.proj.fromLonLat([0.0, 0.0]),
+                                    zoom: 4
+                                })
+                            });
+
+                            function simpleReverseGeocoding(lon, lat) {
+                                fetch('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + lon + '&lat=' + lat).then(function (response) {
+                                    return response.json();
+                                }).then(function (json) {
+                                    document.getElementById('address').value = json.display_name;
+                                })
+                            }
+                            map.on('click', function (e) {
+                                var coordinate = ol.proj.toLonLat(e.coordinate).map(function (val) {
+                                    return val.toFixed(6);
+                                });
+                                var lon = document.getElementById('lon').value = coordinate[0];
+                                var lat = document.getElementById('lat').value = coordinate[1];
+                                simpleReverseGeocoding(lon, lat);
+                            });
+                            document.getElementById('reversegeocoding').addEventListener('click', function (e) {
+                                if (document.getElementById('lon').value && document.getElementById('lat').value) {
+                                    simpleReverseGeocoding(document.getElementById('lon').value, document.getElementById('lat').value);
+                                }
+                            });
+                        </script>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Slika:</td>
+                    <td><input type="file" name="PosterAranzmana" /></td>
+                </tr>
+                <tr>
+                    <td>Izaberite id smjestaja:</td>
+                    <td><input list="idsmjestaja" name="IdSmjestaja" />
+                    <datalist id="idsmjestaja">
+                        @foreach(Smjestaj item in ViewBag.smjestaji)
+                        {
+                            <option value="@item.IdSmjestaja"></option>
+                        }
+                        </datalist></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Dodaj"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <!--
+
+    <div>
+         <form action="~/Menadzer/DodajAranzman" method="post">
+             <table>
+
+                 <tr>
+                     <td>Naziv aranzmana:</td>
+                     <td><input type="text" name="NazivAranzmana" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Tip aranzmana:</td>
+                     <td>
+                         <input list="tip" name="Tip_aranzmana" />
+                         <datalist id="tip">
+                             <option value="NOCENJE_SA_DORUCKOM"></option>
+                             <option value="POLUPANSION"></option>
+                             <option value="PUN_PANSION"></option>
+                             <option value="ALL_INCLUSIVE"></option>
+                             <option value="NAJAM_APARTMANA"></option>
+                         </datalist>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>Tip prevoza:</td>
+                     <td>
+
+                         <input list="prevoz" name="Tip_prevoza" />
+                         <datalist id="prevoz">
+                             <option value="AUTOBUS"></option>
+                             <option value="AVION"></option>
+                             <option value="AUTOBUS_AVION"></option>
+                             <option value="INDIVIDUALAN"></option>
+                             <option value="OSTALO"></option>
+                         </datalist>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>Lokacija:</td>
+                     <td>
+                         <input list="lokacija" name="Lokacija" />
+                         <datalist id="lokacija">
+                             <option value="GRAD"></option>
+                             <option value="DRZAVA"></option>
+                             <option value="REGIJA"></option>
+                         </datalist>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>Datum pocetka:</td>
+                     <td><input type="date" name="DatumPocetkaPutovanja" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Datum kraja:</td>
+                     <td><input type="date" name="DatumZavrsetkaPutovanja" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Vrijeme nalazenja:</td>
+                     <td><input type="time" name="VrijemeNalazenje" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Maksimalni broj putnika:</td>
+                     <td><input type="number" name="MaxBrojPutnika" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Opis aranzmana</td>
+                     <td><input type="text" name="OpisAranzmana" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Program putovanja:</td>
+                     <td><input type="text" name="ProgramPutovanja" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Adresa nalazenja:</td>
+                     <td><input type="text" name="Adresa" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Geografska duzina:</td>
+                     <td><input type="number" step="any" name="GeografksaDuzina" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Geografska sirina:</td>
+                     <td><input type="number" step="any" name="GeografksaSirina" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Naziv smjestaja:</td>
+                     <td><input type="text" name="NazivSmjestaja"/></td>
+                 </tr>
+                 <tr>
+                     <td>Tip smjestaja:</td>
+                     <td>
+                         <input list="tipsmjestaja" name="Tip_smjestaja" />
+                         <datalist id="tipsmjestaja">
+                             <option value="HOTEL"></option>
+                             <option value="MOTEL"></option>
+                             <option value="VILA"></option>
+                         </datalist>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>Broj zvjezdica:</td>
+                     <td><input type="number" name="BrojZvjezdica" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Bazen(Da/Ne):</td>
+                     <td><input type="text" name="Bazen"/></td>
+                 </tr>
+
+                 <tr>
+                     <td>Spa centar(Da/Ne):</td>
+                     <td><input type="text" name="SpaCentar"/></td>
+                </tr>
+
+                 <tr>
+                     <td>Prilagodjenost osobama sa invaliditetom(Da/Ne):</td>
+                     <td><input type="text"  name="PrilagodjenostOsobamaSaInvaliditetom"/></td>
+                 </tr>
+
+                 <tr>
+                     <td>WiFi((Da/Ne):</td>
+                     <td><input type="text" name="WiFi" /></td>
+                 </tr>
+
+                 <tr>
+                     <td>Slika:</td>
+
+    </tr>
+    <tr>
+        <td>Cijena aranzmana:</td>
+        <td><input type="number" step="any" name="Cena" /></td>
+    </tr>
+    <tr>
+        <td>Dozvoljen broj gostiju:</td>
+        <td><input type="number" name="DozvoljenBrojGostiju" /></td>
+    </tr>
+    <tr>
+        <td>Dozvoljeni ljubimci:</td>
+        <td><input type="text" name="DozvoljeniLjubimci" /></td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="Dodaj aranzman" /></td>
+    </tr>
+    </table>
+    </form>
+
+    <p style="color:red;">@ViewBag.Greska</p>
+    <p style="color:#b30000;">@ViewBag.Uspjesno</p>
+
+    </div>
+         -->
+
+
+</body>
+
+
+</html>
+

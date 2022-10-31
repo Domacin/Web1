@@ -1,0 +1,271 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "Modifikacija";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.3;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+        }
+
+        .map {
+            height: 350px;
+            width: 100%;
+        }
+
+        tr, td {
+            padding: 3px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+</head>
+
+<body>
+    <h2>Informacije o aranzmanu:</h2>
+
+    <div style="float:left; width:50%;">
+        @{
+            List<Smjestaj> smjestaji = new List<Smjestaj>();
+            List<SmjestajnaJedinica> smjestajnejedinice = new List<SmjestajnaJedinica>();
+            foreach (Smjestaj item in ViewBag.smjestaji)
+            {
+                smjestaji.Add(item);
+            }
+
+            foreach (SmjestajnaJedinica item in ViewBag.SJedinice)
+            {
+                smjestajnejedinice.Add(item);
+            }
+
+
+        <form action="~/Menadzer/SacuvajModifikacijuAranzmana" method="post">
+
+
+            @foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+            {
+                <p>Menadzer koji je napravio aranzman: <input type="text" name="PripadaKorisniku" value="@a.PripadaKorisniku" readonly /></p>
+                <p>Id aranzmana: <input type="number" name="IdAranzmana" value="@a.IdAranzmana" readonly /></p>
+                <p>Id smjestaja: <input type="number" name="IdSmjestaja" value="@a.IdSmjestaja" readonly /></p>
+                <p>Naziv aranzmana:<input type="text" name="NazivAranzmana" value="@a.NazivAranzmana" /></p>
+                <p>
+                    Tip aranzmana:<input list="tiparanzmana" name="Tip_aranzmana" value="@a.Tip_aranzmana" />
+                    <datalist id="tiparanzmana">
+                        <option value="NOCENJE_SA_DORUCKOM"></option>
+                        <option value="POLUPANSION"></option>
+                        <option value="PUN_PANSION"></option>
+                        <option value="ALL_INCLUSIVE"></option>
+                        <option value="NAJAM_APARTMANA"></option>
+                    </datalist>
+                </p>
+                <p>
+                    Tip Prevoza:<input list="tipprevoza" name="Tip_prevoza" value="@a.Tip_prevoza" />
+                    <datalist id="tipprevoza">
+                        <option value="AUTOBUS"></option>
+                        <option value="AVION"></option>
+                        <option value="AUTOBUS_AVION"></option>
+                        <option value="INDIVIDUALAN"></option>
+                        <option value="OSTALO"></option>
+                    </datalist>
+                </p>
+                <p>
+                    Lokacija:<input list="lokacija" name="Lokacija" value="@a.Lokacija" />
+                    <datalist id="lokacija">
+                        <option value="GRAD"></option>
+                        <option value="DRZAVA"></option>
+                        <option value="REGIJA"></option>
+                    </datalist>
+                </p>
+                <p>Datum pocetka aranzmana: @a.DatumPocetkaPutovanja.ToString("dd//MM/yyyy") <input type="date" required name="DatumPocetkaPutovanja" value="@a.DatumPocetkaPutovanja.ToShortDateString()" /></p>
+                <p>Datum kraja aranzmana: @a.DatumZavrsetkaPutovanja.ToString("dd//MM/yyyy") <input type="date" required name="DatumZavrsetkaPutovanja" /></p>
+
+                <p>Adresa odakle se krece:<input type="text" id="address" name="Adresa" value="@a.MjestoNalazenja.Adresa" /></p>
+                <p>Geografska duzina i sirina mjesta odakle se krece:<input type="number" name="GeografksaDuzina" id="lat" step="any" value="@a.MjestoNalazenja.GeografksaDuzina" /> : <input type="number" id="lon" step="any" name="GeografksaSirina" value="@a.MjestoNalazenja.GeografksaSirina" />  </p>
+                <div id="map" class="map"></div>
+                <script type="text/javascript">
+                    var map = new ol.Map({
+                        target: 'map',
+                        layers: [
+                            new ol.layer.Tile({
+                                source: new ol.source.OSM()
+                            })
+                        ],
+                        view: new ol.View({
+                            center: ol.proj.fromLonLat([0.0, 0.0]),
+                            zoom: 4
+                        })
+                    });
+
+                    function simpleReverseGeocoding(lon, lat) {
+                        fetch('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + lon + '&lat=' + lat).then(function (response) {
+                            return response.json();
+                        }).then(function (json) {
+                            document.getElementById('address').value = json.display_name;
+                        })
+                    }
+                    map.on('click', function (e) {
+                        var coordinate = ol.proj.toLonLat(e.coordinate).map(function (val) {
+                            return val.toFixed(6);
+                        });
+                        var lon = document.getElementById('lon').value = coordinate[0];
+                        var lat = document.getElementById('lat').value = coordinate[1];
+                        simpleReverseGeocoding(lon, lat);
+                    });
+                    document.getElementById('reversegeocoding').addEventListener('click', function (e) {
+                        if (document.getElementById('lon').value && document.getElementById('lat').value) {
+                            simpleReverseGeocoding(document.getElementById('lon').value, document.getElementById('lat').value);
+                        }
+                    });
+                </script>
+                <p>Vrijeme pocetka putovanja: @a.VrijemeNalazenje.ToShortTimeString() <input type="time" required name="VrijemeNalazenje" /></p>
+                <p>Maksimalan dozvoljen broj putnika:<input type="number" name="MaxBrojPutnika" value="@a.MaxBrojPutnika" /> </p>
+                <p>Opis aranzmana:<input type="text" name="OpisAranzmana" value="@a.OpisAranzmana" /></p>
+                <p>Program putovanja:<input type="text" name="ProgramPutovanja" required value="@a.ProgramPutovanja" /></p>
+                <p>Slika: <img src="@a.PosterAranzmana" width="150" height="100" /> <input type="file" name="PosterAranzmana" value="@a.PosterAranzmana" /></p>
+            }
+
+
+            <h2>Informacije o smjestaju aranzmana:</h2>
+
+            <div style="float:left;">
+                @foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+                {
+                    for (int i = 0; i < smjestaji.Count; i++)
+                    {
+                        if (a.IdSmjestaja == smjestaji[i].IdSmjestaja)
+                        {
+                            <p>Naziv smjestaja:<input type="text" name="NazivSmjestaja" value="@smjestaji[i].NazivSmjestaja" /></p>
+                            <p>
+                                Tip smjestaja:<input list="tipsmjestaja" name="Tip_smjestaja" value=" @smjestaji[i].Tip_smjestaja.ToString()" />
+                                <datalist id="tipsmjestaja">
+                                    <option value="HOTEL"></option>
+                                    <option value="MOTEL"></option>
+                                    <option value="VILA"></option>
+                                </datalist>
+                            </p>
+                            <p>Broj zvjezdica:<input type="number" name="BrojZvjezdica" value="@smjestaji[i].BrojZvjezdica" /></p>
+                            <p>Bazen:<input type="text" name="Bazen" value="@smjestaji[i].Bazen" /></p>
+                            <p>Spa centar:<input type="text" name="SpaCentar" value="@smjestaji[i].SpaCentar" /></p>
+                            <p>WiFi:<input type="text" name="WiFi" value="@smjestaji[i].WiFi" /></p>
+                            <p>Prilagodjenost osobama sa invaliditetom:<input type="text" name="PrilagodjenostOsobamaSaInvaliditetom" value="@smjestaji[i].PrilagodjenostOsobamaSaInvaliditetom" /></p>
+
+                        }
+                    }
+                }
+            </div>
+
+
+
+            <p><input type="submit" value="Sacuvaj izmjene" /></p>
+        </form>
+        }
+    </div>
+           
+    <div style="float:right">
+        <h2>Smjestajne jedinice:</h2>
+        <table>
+            <tr>
+                <td>
+                    <form action="~/Informacija/sortirajPoBrojuDozvoljenihGostijuModifikacija" method="post">
+                        <input type="submit" value="Dozvoljeni broj gostiju" style="border:unset;background-color:transparent;" />
+                    </form>
+                </td>
+
+                <td>Dozvoljeni ljubimci</td>
+                <td>
+                    <form action="~/Informacija/sortirajPoCeniModifikacija" method="post">
+                        <input type="submit" value="Cijena" style="border:unset;background-color:transparent;" />
+                    </form>
+                </td>
+                <td>Zauzeto</td>
+            </tr>
+            @foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+            {
+                for (int i = 0; i < smjestaji.Count; i++)
+                {
+                    for (int j = 0; j < smjestajnejedinice.Count; j++)
+                    {
+                        if (a.IdSmjestaja == smjestaji[i].IdSmjestaja && smjestajnejedinice[j].PripadaSmjestaju == smjestaji[i].IdSmjestaja)
+                        {
+                            <tr>
+                                <td>@smjestajnejedinice[j].DozvoljenBrojGostiju</td>
+                                <td>@smjestajnejedinice[j].DozvoljeniLjubimci</td>
+                                <td>@smjestajnejedinice[j].CenaSmestajneJedinice</td>
+                                <td>@smjestajnejedinice[j].Zauzeto</td>
+                            </tr>
+                        }
+                    }
+
+                }
+            }
+        </table>
+
+    </div>
+    @{
+
+        if (Session["listaModifikacija"] == null)
+        {
+            Session["listaModifikacija"] = new List<Aranzman>();
+
+        }
+
+
+        foreach (Aranzman a in ViewBag.aranzmanZaPrikaz)
+        {
+            (Session["listaModifikacija"] as List<Aranzman>).Add(a);
+
+        }
+
+
+
+    }
+    <div style="float:right;padding-top:5%;">
+        <form action="~/Informacija/PretragaModifikacija" method="post">
+            <table style="background-color:#f5f5ef;">
+                <tr>
+                    <td>Donja granica za dozvoljeni broj gostiju:</td>
+                    <td> <input type="number" name="DozvoljenBrojGostijuMin" /></td>
+                </tr>
+
+                <tr>
+                    <td>Gornja granica za dozvoljeni broj gostiju:</td>
+                    <td> <input type="number" name="DozvoljenBrojGostijuMax" /></td>
+                </tr>
+
+                <tr>
+                    <td>Dozvoljen boravak ljubimcima:</td>
+                    <td><input type="text" name="DozvoljeniLjubimci" /></td>
+                </tr>
+
+                <tr>
+                    <td>Cena za smjestajne jedinice:</td>
+                    <td><input type="number" step="any" name="CenaSmestajneJedinice" /></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+</body>
+
+</html>
+

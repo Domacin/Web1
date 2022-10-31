@@ -1,0 +1,101 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "SpisakSmjestajnihJedinica";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.3;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+        }
+
+        tr, td {
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="float:left;">
+
+        <table>
+            <tr>
+                <td>Id smjestajne jedinice</td>
+                <td>Dozvoljeni broj gostiju</td>
+                <td>Dozvoljeni ljubimci</td>
+                <td>Cena smjestajne jedinica</td>
+                <td>Zauzeto</td>
+                 
+                <td>Dodatno</td>
+            </tr>
+
+            @foreach (SmjestajnaJedinica s in ViewBag.smjestajnejedinice)
+            {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.DozvoljenBrojGostiju</td>
+                <td>@s.DozvoljeniLjubimci</td>
+                <td>@s.CenaSmestajneJedinice</td>
+                <td>@s.Zauzeto</td>
+                @if (s.Zauzeto == "ne")
+                {
+                    <td><a href="~/Menadzer/ObrisiSmjestajnuJedinicu?id=@s.Id">Obrisi smjestaj</a></td>
+                }
+                <td><a href="~/Informacija/ModifikacijaSmjestajnaJedinica?id=@s.Id">Modifikuj</a></td>
+
+            </tr>
+            }
+        </table>
+
+    </div>
+
+    <div style="padding-top:2%;">
+        <form action="~/Menadzer/PretragaSJ" method="post">
+            <table style="border-collapse:collapse;border-width:1px;border-style:solid;border-color:black;">
+                <tr>
+                    <td>Donja granica za dozvoljeni broj gostiju:</td>
+                    <td> <input type="number" name="DozvoljenBrojGostijuMin" /></td>
+                </tr>
+
+                <tr>
+                    <td>Gornja granica za dozvoljeni broj gostiju:</td>
+                    <td> <input type="number" name="DozvoljenBrojGostijuMax" /></td>
+                </tr>
+
+                <tr>
+                    <td>Dozvoljen boravak ljubimcima:</td>
+                    <td><input type="text" name="DozvoljeniLjubimci" /></td>
+                </tr>
+
+                <tr>
+                    <td>Cena za smjestajne jedinice:</td>
+                    <td><input type="number" step="any" name="CenaSmestajneJedinice" /></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
+
+

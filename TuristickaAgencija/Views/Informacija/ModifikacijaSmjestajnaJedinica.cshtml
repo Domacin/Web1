@@ -1,0 +1,78 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "ModifikacijaSmjestajnaJedinica";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+            height: 100%;
+        }
+
+        td, tr {
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="~/Menadzer/ModifikacijaSJ" method="post">
+        <table>
+            <tr>
+                <td>Id smjestajne jedinice</td>
+                <td>Dozvoljen broj gostiju</td>
+                <td>Dozvoljeni ljubimci</td>
+                <td>Cena</td>
+                <td>Zauzeto</td>
+            </tr>
+           
+            @foreach (SmjestajnaJedinica sj in ViewBag.SJedinice)
+            {
+                <tr>
+                    <td>
+                        <input type="number" name="Id" value="@sj.Id" readonly />
+                    </td>
+                    <td>
+                        @if (sj.Zauzeto == "ne")
+                        {
+                            <input type="number" name="DozvoljenBrojGostiju" value="@sj.DozvoljenBrojGostiju" />
+                        }
+                        else
+                        {
+                            <input type="number" name="DozvoljenBrojGostiju" value="@sj.DozvoljenBrojGostiju"readonly />
+                        }
+
+                    </td>
+                    <td>
+                        <input type="text" name="DozvoljeniLjubimci" value="@sj.DozvoljeniLjubimci" />
+                    </td>
+                    <td>
+                        <input type="number" name="CenaSmestajneJedinice" step="any" value="@sj.CenaSmestajneJedinice" />
+                    </td>
+                    <td>@sj.Zauzeto</td>
+                    <td><input type="submit" value="Sacuvaj izmjene" /></td>
+                </tr>
+            }
+        </table>
+     
+    </form>
+</body>
+
+</html>
+ 
+

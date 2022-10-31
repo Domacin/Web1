@@ -1,0 +1,85 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <style>
+
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+            height: 100%;
+        }
+
+        td, tr {
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>PROFIL:</h2>
+    <form action="~/Profil/Edit" method="post">
+        <table style="background-color:#f0fcfc;">
+            @{
+                foreach (Korisnik k in ViewBag.korisnici)
+                {
+                    <tr>
+                        <td>Korisnicko ime:</td>
+                        <td>@k.KorisnickoIme</td>
+                    </tr>
+                    <tr>
+                        <td>Ime:</td>
+                        <td><input type="text" name="Ime" value="@k.Ime" /></td>
+                    </tr>
+                    <tr>
+                        <td>Prezime:</td>
+                        <td><input type="text" name="Prezime" value="@k.Prezime" /></td>
+                    </tr>
+                    <tr>
+                        <td>Lozinka:</td>
+                        <td><input type="text" name="Lozinka" value="@k.Lozinka" /></td>
+                    </tr>
+                    <tr>
+                        <td>Pol:</td>
+                        <td>@k.Pol </td>
+                    </tr>
+                    <tr>
+                        <td>E-mail:</td>
+                        <td><input type="email" name="Email" value="@k.Email" /></td>
+                    </tr>
+                    <tr>
+                        <td>Datum rodjenja:</td>
+                        <td>@k.Datum.ToString("dd//MM/yyyy")</td>
+                    </tr>
+                    <tr>
+                        <td>Uloga:</td>
+                        <td>@k.Uloga.ToString()</td>
+                    </tr>
+
+                }
+            }
+            <tr><td><input type="submit" value="Sacuvaj izmjene" /></td></tr>
+        </table>
+    </form>
+</body>
+
+</html>
+ 
+

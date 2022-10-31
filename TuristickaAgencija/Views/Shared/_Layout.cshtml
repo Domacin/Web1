@@ -1,0 +1,66 @@
+﻿@using TuristickaAgencija.Models
+@{ 
+    Korisnik user = (Korisnik)Session["korisnik"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+ 
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:transparent;">
+        <div class="container">
+
+            <div class="navbar-collapse collapse" style="background-color:transparent;">
+                <ul class="nav navbar-nav">
+                    @if (user == null)
+                    {
+                        <li><a href="~/Pocetna/Index" style="color:black;">Pocetna stranica</a></li>
+                        <li><a href="~/Registracija/Index" style="color:black;">Napravite nalog</a></li>
+                        <li><a href="~/LogIn/Index" style="color:black;">Ulogujte se</a></li>
+
+                    }
+                    @if (user != null)
+                    {
+                        <li><a href="~/Pocetna/Index" style="color:black;">Pocetna stranica</a></li>
+                        if (user.Uloga == ULOGA.ADMINISTRATOR)
+                        {
+
+                            <li><a style="color:black;" href="~/Administrator/Index">Administratorski panel</a></li>
+                            <li><a style="color:black" href="~/Administrator/SpisakKorisnika">Spisak korisnika</a></li>
+                        }
+                        else if (user.Uloga == ULOGA.MENADZER)
+                        {
+
+                            <li><a style="color:black;" href="~/Menadzer/Index">Menadzerski panel</a></li>
+                            <li><a style="color:black;" href="~/Menadzer/SpisakAranzmana">Spisak aranzmana</a></li>
+                        }
+                        else
+                        {
+                            <li><a style="color:black;" href="~/Turista/Index">Spisak rezervacija</a></li>
+                        }
+                        <li><a style="color:black;" href="~/Profil/Index">Profil</a></li>
+                        <li><a style="color:black;" href="~/Login/IzlogujSe">Izloguj se</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

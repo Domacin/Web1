@@ -1,0 +1,129 @@
+﻿@using TuristickaAgencija.Models
+@{
+    ViewBag.Title = "SpisakSmjestaja";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body::after {
+            background-image: url('../../Slike/Plaza7.jpg');
+            content: "";
+            opacity: 0.3;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+            background-size: cover;
+        }
+
+        tr, td {
+            padding: 3px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div style="float:left;">
+        
+        <table>
+            <tr>
+                <td>Id smjestaja</td>
+                <td>Naziv smjestaja</td>
+                <td>Tip smejstaja</td>
+                <td>Broj zvjezdica</td>
+                <td>Bazen</td>
+                <td>Spa centar</td>
+                <td>Prilagodjennost OSI</td>
+                <td>Wifi</td>
+                <td>Ukupan broj smjestajnih jedinica:</td>
+                <td>Dodatno</td>
+            </tr>
+
+
+            @foreach(Smjestaj s in ViewBag.smjestaji)
+            {
+                 
+            <tr>
+                <td>@s.IdSmjestaja</td>
+                <td>@s.NazivSmjestaja</td>
+                <td>@s.Tip_smjestaja</td>
+                <td>@s.BrojZvjezdica</td>
+                <td>@s.Bazen</td>
+                <td>@s.SpaCentar</td>
+                <td>@s.PrilagodjenostOsobamaSaInvaliditetom</td>
+                <td>@s.WiFi</td>
+                <td>@s.listaSmjestajnihJedinica.Count</td>
+               
+                    @if(s.BarJednaSMjestajnaJedinicaZauzeta == false)
+                    {
+                        <td><a href="~/Menadzer/ObrisiSmjestaj?id=@s.IdSmjestaja">Obrisi smjestaj</a></td>
+                    
+                    }
+
+            
+
+
+
+            </tr>
+                    
+                
+            }
+                         
+
+        </table>
+
+    </div>
+
+    <div style="padding-top:2%;">
+        <form action="~/Menadzer/PretragaSmjestaja" method="post">
+            <table style="border-collapse:collapse;border-width:1px;border-style:solid;border-color:black;">
+                <tr>
+                    <td>Tip smjestaja:</td>
+                    <td> <input list="tipsmjestaja" name="Tip_smjestaja" />
+                         <datalist id="tipsmjestaja">
+                             <option value="HOTEL"></option>
+                             <option value="MOTEL"></option>
+                             <option value="VILA"></option>
+                         </datalist>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Naziv smjestaja:</td>
+                    <td> <input type="text" name="NazivSmjestaja" /></td>
+                </tr>
+
+                <tr>
+                    <td>Postojanje bazena:</td>
+                    <td><input type="text" name="Bazen" /></td>
+                </tr>
+
+                <tr>
+                    <td>Postojanje spa centra:</td>
+                    <td><input type="text"  name="SpaCentar" /></td>
+                </tr>
+                <tr>
+                    <td>Prilagodjenost OSI:</td>
+                    <td><input type="text" name="PrilagodjenostOsobamaSaInvaliditetom" /></td>
+                </tr>
+                <tr>
+                    <td>Postojanje Wifi-a:</td>
+                    <td><input type="text" name="WiFi" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+</form>
+
+    </div>
+
+</body>
+</html>
